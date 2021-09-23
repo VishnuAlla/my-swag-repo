@@ -1,0 +1,9 @@
+{
+    "chromeWebSecurity": false,
+    "reporter" : "mochawesome",
+    "env" :
+    {
+        "url":"https://www.saucedemo.com/"
+
+    }
+}

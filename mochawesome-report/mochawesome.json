@@ -1,0 +1,119 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-23T07:58:32.815Z",
+    "end": "2021-09-23T07:58:43.193Z",
+    "duration": 10378,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "82a7610e-36fe-4ce4-82f5-88ba9358178e",
+      "title": "",
+      "fullFile": "cypress/integration/examples/swagtests.spec.js",
+      "file": "cypress/integration/examples/swagtests.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f2f65330-8e7f-4c3e-9825-cfa76d601189",
+          "title": "My Swag Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Buy all the items",
+              "fullTitle": "My Swag Test Suite Buy all the items",
+              "timedOut": null,
+              "duration": 6819,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(Cypress.env('url')); //Login with standard user\nlocators.getUsername().type(this.data.standard_username);\nlocators.getPassword().type(this.data.common_password);\nlocators.getLoginbutton().click(); //Add all the items to the cart\nlocators.getBackpack().click();\nlocators.getBikelight().click();\nlocators.getBoltTshirt().click();\nlocators.getFleecejacket().click();\nlocators.getOnesie().click();\nlocators.getRedTshirt().click(); //Checkout\nlocators.getShoppingcart().click();\nlocators.getCheckoutbutton().click(); //Enter your information\nlocators.getFirstname().type(this.data.firstname);\nlocators.getLastname().type(this.data.lastname);\nlocators.getPostalcode().type(this.data.postalcode);\nlocators.getContinuebutton().click(); //Calculate the sum of the items \nvar sum = 0;\nlocators.getItemsprice_in_the_Cart().each(($el, index, $list) => {\n  const amount = $el.text();\n  var price = amount.replace(/^\\D+/g, '');\n  sum = Number(sum) + Number(price);\n}).then(function () {\n  cy.log(sum);\n}); //Compare the sum with the displayed total  \nlocators.getTotallabel().then(function (element) {\n  const total_amount = element.text();\n  var total_amount1 = total_amount.replace(/^\\D+/g, '');\n  expect(Number(total_amount1)).to.equal(sum);\n});\nlocators.getFinishbutton().click(); //Assert the success messages after finishing the purchase\nlocators.getTitle().should('have.text', 'Checkout: Complete!');\nlocators.getCompleteheader().should('have.text', 'THANK YOU FOR YOUR ORDER');\nlocators.getCompletetext().should('have.text', 'Your order has been dispatched, and will arrive just as fast as the pony can get there!');\nlocators.getBacktoproducts().click(); //Logout\nlocators.getBurgerbutton().click();\nlocators.getLogoutlink().click();",
+              "err": {},
+              "uuid": "ac6c83b0-e1c6-41ff-823c-43f62c2402de",
+              "parentUUID": "f2f65330-8e7f-4c3e-9825-cfa76d601189",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Locked out user test",
+              "fullTitle": "My Swag Test Suite Locked out user test",
+              "timedOut": null,
+              "duration": 870,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Login with locked out user\nlocators.getUsername().type(this.data.locked_username);\nlocators.getPassword().type(this.data.common_password);\nlocators.getLoginbutton().click(); //Assert the error message\nlocators.getErrormsg().should('have.text', 'Epic sadface: Sorry, this user has been locked out.');",
+              "err": {},
+              "uuid": "72a3f805-3694-46d7-b32a-82e6a2dc3e6e",
+              "parentUUID": "f2f65330-8e7f-4c3e-9825-cfa76d601189",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ac6c83b0-e1c6-41ff-823c-43f62c2402de",
+            "72a3f805-3694-46d7-b32a-82e6a2dc3e6e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7689,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.2.0"
+    }
+  }
+}
